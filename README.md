@@ -1,2 +1,2 @@
-# release
-eterminer
+#Docs
+Eterchain
