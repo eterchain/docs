@@ -84,9 +84,9 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Introduction',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          {to: 'https://eterchain.io', label: 'Dashboard', position: 'left'},
           {
             href: 'https://github.com/eterchain',
             label: 'GitHub',
@@ -101,7 +101,7 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
+                label: 'Introduction',
                 to: '/docs/intro',
               },
             ],
@@ -127,8 +127,8 @@ const config = {
             title: 'More',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
+                label: 'Dashboard',
+                to: 'https://eterchain.io',
               },
               {
                 label: 'GitHub',
