@@ -4,32 +4,30 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Easy to Use',
+    title: 'Interoperability',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Exchange value and data seamlessly across blockchains and other systems. Connect any system together with Eterchain Protocol.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Defi',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Instant liquidity for blockchain and token projects. Create markets and find funding. Use for lending and borrowing.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Fast and Low-Cost Transactions',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Fast transaction speeds for seamless user experience.
+        Minimal transaction fees, making it cost-effective for both small and large-scale transfers.
       </>
     ),
   },
