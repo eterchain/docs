@@ -22,7 +22,7 @@ const sidebars = {
   /*
   tutorialSidebar: [
     'intro',
-    'Hey',
+    'Hello',
     {
       type: 'category',
       label: 'Tutorial',
