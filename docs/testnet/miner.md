@@ -2,15 +2,15 @@
 sidebar_position: 1
 ---
 
-# Eterchain Miner
-Welcome to the Eterchain Miner Setup! This guided process will help you configure your miner with ease, providing step-by-step instructions to ensure a smooth start.
+# Eterchain Client
+Welcome to the Eterchain Client Setup! This guided process will help you configure your device with ease, providing step-by-step instructions to ensure a smooth start.
 
-Let's get you set up and ready to operate efficiently on the blockchain network, You can view all versions of [Eterminer Releases **Here**](https://github.com/eterchain/eterminer/releases).
+Let's get you set up and ready to operate efficiently on the blockchain network, You can view all versions of [eClient Releases](https://github.com/eterchain/eterminer/releases).
 
-We **recommend** to use root folder using command `CD ~` this approach makes it easier to locate the files and folders where the miner operates.
+We **recommend** to use root folder using command `CD ~` this approach makes it easier to locate the files and folders where the eClient operates.
 
 
-### Step 1 : Download the Miner from GitHub Releases
+### Step 1 : Download the eClient from GitHub Releases
 ```
 curl -L -O https://github.com/eterchain/eterminer/releases/download/v1.0.2/eterchainV1.0.2.tar.gz
 ```
@@ -22,8 +22,8 @@ tar -xvzf eterchainV1.0.2.tar.gz
 ```mdx title="Navigate to the extracted folder"
 cd eterchain
 ```
-### Step 4 : Run the Miner
-```mdx title="Run the miner with the following command"
+### Step 4 : Run the eClient
+```mdx title="Run the eClient with the following command"
 ./eterminer
 ```
 ### Step 5 : Enter Your EVM Wallet Address
