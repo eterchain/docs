@@ -9,3 +9,71 @@
   height: 200px;
   width: 200px;
 }
+
+.container2 {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Grid kiri (2 bagian) dan kanan (1 bagian) */
+  gap: 1rem; /* Jarak antar grid */
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.gridLeft {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 kolom dengan lebar yang sama */
+  gap: 1rem;
+}
+
+.gridRight {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* Scroll horizontal jika tabel lebih lebar dari container */
+}
+
+.gridItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  word-wrap: break-word;
+  height: 100%;
+}
+
+
+.midleLine {
+  width: 80%;
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.itemtitle {
+  font-size: 1.5rem;   /* Ukuran font lebih besar untuk description */
+  font-weight: normal;   /* Bisa diatur menjadi bold jika diinginkan */
+  color: #4d4d4d; 
+  margin-bottom: 0px;
+}
+
+.description {
+  font-size: 2.2rem;   /* Ukuran font lebih besar untuk description */
+  font-weight: bold;   /* Bisa diatur menjadi bold jika diinginkan */
+}
+
+.types {
+  font-size: 1rem;     /* Ukuran font lebih kecil untuk types */
+  color: #777;         /* Bisa ditambahkan warna abu-abu */
+}
+
+

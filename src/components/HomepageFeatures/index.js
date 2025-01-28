@@ -2,38 +2,21 @@ import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
-const FeatureList = [
-  {
-    title: 'Interoperability',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
-    description: (
-      <>
-        Exchange value and data seamlessly across blockchains and other systems. Connect any system together with Eterchain Protocol.
-      </>
-    ),
-  },
-  {
-    title: 'Defi',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-    description: (
-      <>
-        Instant liquidity for blockchain and token projects. Create markets and find funding. Use for lending and borrowing.
-      </>
-    ),
-  },
-  {
-    title: 'Fast and Low-Cost Transactions',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
-    description: (
-      <>
-        Fast transaction speeds for seamless user experience.
-        Minimal transaction fees, making it cost-effective for both small and large-scale transfers.
-      </>
-    ),
-  },
+const FeatureList = [];
+const LeftGridItems = [
+  { title: "Global eClient", description: "2.234 ", types: "eClients" },
+  { title: "Global Worker", description: "6.874 ", types: "Workers" },
+  { title: "Global Speed", description: "58.8 ", types: "Th/s" },
+  { title: "Global CPU", description: "4.845 ", types: "CPUs" },
+  { title: "Testnet Payout", description: "26.4", types: "M EC" },
+  { title: "Global RAM", description: "24 ", types: "TB" },
+  { title: "Judul 7", description: "- - -", types: "," },
+  { title: "Judul 8", description: "- - -", types: "," },
+  { title: "Judul 9", description: "- - -", types: "," },
 ];
 
-function Feature({Svg, title, description}) {
+
+function Feature({ Svg, title, description }) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
@@ -49,14 +32,146 @@ function Feature({Svg, title, description}) {
 
 export default function HomepageFeatures() {
   return (
-    <section className={styles.features}>
-      <div className="container">
-        <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
+    <>
+      <div className={styles.container2}>
+        {/* Grid kiri */}
+        <div className={styles.gridLeft}>
+          {LeftGridItems.map((item, idx) => (
+            <div key={idx} className={styles.gridItem}>
+              <p>
+              <span className={styles.itemtitle}>{item.title}</span>
+              </p>
+              <hr className={styles.midleLine} />
+              <p>
+                <span className={styles.description}>{item.description}</span>
+                <span className={styles.types}>{item.types}</span>
+              </p>
+            </div>
           ))}
         </div>
+
+        {/* Grid kanan */}
+        <div className={styles.gridRight}>
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Wallet</th>
+                <th>Point</th>
+                <th>Worker</th>
+                <th>Speed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>0x . . . 34te</td>
+                <td>32,152</td>
+                <td>24</td>
+                <td>5.5 Mh/s</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>0x . . . 34te</td>
+                <td>32,152</td>
+                <td>24</td>
+                <td>5.5 Mh/s</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>0x . . . 34te</td>
+                <td>32,152</td>
+                <td>24</td>
+                <td>5.5 Mh/s</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>0x . . . 34te</td>
+                <td>32,152</td>
+                <td>24</td>
+                <td>5.5 Mh/s</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>0x . . . 34te</td>
+                <td>32,152</td>
+                <td>24</td>
+                <td>5.5 Mh/s</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>0x . . . 34te</td>
+                <td>32,152</td>
+                <td>24</td>
+                <td>5.5 Mh/s</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>0x . . . 34te</td>
+                <td>32,152</td>
+                <td>24</td>
+                <td>5.5 Mh/s</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>0x . . . 34te</td>
+                <td>32,152</td>
+                <td>24</td>
+                <td>5.5 Mh/s</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>0x . . . 34te</td>
+                <td>32,152</td>
+                <td>24</td>
+                <td>5.5 Mh/s</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>0x . . . 34te</td>
+                <td>32,152</td>
+                <td>24</td>
+                <td>5.5 Mh/s</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>0x . . . 34te</td>
+                <td>32,152</td>
+                <td>24</td>
+                <td>5.5 Mh/s</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>0x . . . 34te</td>
+                <td>32,152</td>
+                <td>24</td>
+                <td>5.5 Mh/s</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>0x . . . 34te</td>
+                <td>32,152</td>
+                <td>24</td>
+                <td>5.5 Mh/s</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </section>
+
+
+      {/* Section for Features */}
+      <section className={styles.features}>
+        <div className="container">
+          <div className="row">
+            {FeatureList.map((props, idx) => (
+              <Feature key={idx} {...props} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      
+    </>
   );
 }

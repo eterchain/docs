@@ -20,7 +20,7 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/introduction">
-            Join Testnet Now ⏱️
+            Join Testnet Now
           </Link>
         </div>
       </div>
@@ -34,7 +34,7 @@ export default function Home() {
     <Layout
       title={`Home`}
       description="Eterchain Documentation">
-      <HomepageHeader />
+      
       <main>
         <HomepageFeatures />
       </main>

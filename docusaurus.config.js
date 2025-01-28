@@ -12,7 +12,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'Eterchain Docs',
   tagline: 'Empowering Infinite Connectivity',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/200b.ico',
 
   // Set the production url of your site here
   url: 'https://docs.eterchain.io',
@@ -73,7 +73,7 @@ const config = {
         title: 'Eterchain',
         logo: {
           alt: 'Eterchain Logo',
-          src: 'img/logo.svg',
+          src: 'img/200d.svg',
         },
         items: [
           {
@@ -82,7 +82,7 @@ const config = {
             position: 'left',
             label: 'Introduction',
           },
-          {to: 'https://eterchain.io', label: 'Dashboard', position: 'left'},
+          {to: 'https://eterchain.io', label: 'Leaderboard', position: 'left'},
           {
             href: 'https://github.com/eterchain',
             label: 'GitHub',
