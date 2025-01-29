@@ -8,11 +8,11 @@ const LeftGridItems = [
   { title: "Global Worker", description: "6.874 ", types: "Workers" },
   { title: "Global Speed", description: "58.8 ", types: "Th/s" },
   { title: "Global CPU", description: "4.845 ", types: "CPUs" },
-  { title: "Testnet Payout", description: "26.4", types: "M EC" },
+  { title: "Testnet Payout", description: "26.4M ", types: "ETERCHAIN" },
   { title: "Global RAM", description: "24 ", types: "TB" },
+];
+const LeftGridItems2 = [
   { title: "Judul 7", description: "- - -", types: "," },
-  { title: "Judul 8", description: "- - -", types: "," },
-  { title: "Judul 9", description: "- - -", types: "," },
 ];
 
 
@@ -48,11 +48,23 @@ export default function HomepageFeatures() {
               </p>
             </div>
           ))}
+          {LeftGridItems2.map((item, idx) => (
+            <div key={idx} className={styles.gridItemSolo}>
+              <p>
+              <span className={styles.itemtitle}>{item.title}</span>
+              </p>
+              <hr className={styles.midleLine} />
+              <p>
+                <span className={styles.description}>{item.description}</span>
+                <span className={styles.types}>{item.types}</span>
+              </p>
+            </div>
+          ))}
         </div>
 
         {/* Grid kanan */}
-        <div className={styles.gridRight}>
-          <table>
+        <div class="gridRight">
+          <table class="gridTable">
             <thead>
               <tr>
                 <th>#</th>
@@ -65,91 +77,105 @@ export default function HomepageFeatures() {
             <tbody>
               <tr>
                 <td>1</td>
-                <td>0x . . . 34te</td>
+                <td class="wallet">0x95d1E . . . . 4AF64a</td>
                 <td>32,152</td>
                 <td>24</td>
                 <td>5.5 Mh/s</td>
               </tr>
               <tr>
                 <td>2</td>
-                <td>0x . . . 34te</td>
+                <td class="wallet">0x95d1E . . . . 4AF64a</td>
                 <td>32,152</td>
                 <td>24</td>
                 <td>5.5 Mh/s</td>
               </tr>
               <tr>
                 <td>3</td>
-                <td>0x . . . 34te</td>
+                <td class="wallet">0x95d1E . . . . 4AF64a</td>
                 <td>32,152</td>
                 <td>24</td>
                 <td>5.5 Mh/s</td>
               </tr>
               <tr>
                 <td>4</td>
-                <td>0x . . . 34te</td>
+                <td class="wallet">0x95d1E . . . . 4AF64a</td>
                 <td>32,152</td>
                 <td>24</td>
                 <td>5.5 Mh/s</td>
               </tr>
               <tr>
                 <td>5</td>
-                <td>0x . . . 34te</td>
+                <td class="wallet">0x95d1E . . . . 4AF64a</td>
                 <td>32,152</td>
                 <td>24</td>
                 <td>5.5 Mh/s</td>
               </tr>
               <tr>
                 <td>6</td>
-                <td>0x . . . 34te</td>
+                <td class="wallet">0x95d1E . . . . 4AF64a</td>
                 <td>32,152</td>
                 <td>24</td>
                 <td>5.5 Mh/s</td>
               </tr>
               <tr>
                 <td>7</td>
-                <td>0x . . . 34te</td>
+                <td class="wallet">0x95d1E . . . . 4AF64a</td>
                 <td>32,152</td>
                 <td>24</td>
                 <td>5.5 Mh/s</td>
               </tr>
               <tr>
                 <td>8</td>
-                <td>0x . . . 34te</td>
+                <td class="wallet">0x95d1E . . . . 4AF64a</td>
                 <td>32,152</td>
                 <td>24</td>
                 <td>5.5 Mh/s</td>
               </tr>
               <tr>
                 <td>9</td>
-                <td>0x . . . 34te</td>
+                <td class="wallet">0x95d1E . . . . 4AF64a</td>
                 <td>32,152</td>
                 <td>24</td>
                 <td>5.5 Mh/s</td>
               </tr>
               <tr>
                 <td>10</td>
-                <td>0x . . . 34te</td>
+                <td class="wallet">0x95d1E . . . . 4AF64a</td>
                 <td>32,152</td>
                 <td>24</td>
                 <td>5.5 Mh/s</td>
               </tr>
               <tr>
-                <td>1</td>
-                <td>0x . . . 34te</td>
+                <td>11</td>
+                <td class="wallet">0x95d1E . . . . 4AF64a</td>
                 <td>32,152</td>
                 <td>24</td>
                 <td>5.5 Mh/s</td>
               </tr>
               <tr>
-                <td>1</td>
-                <td>0x . . . 34te</td>
+                <td>12</td>
+                <td class="wallet">0x95d1E . . . . 4AF64a</td>
                 <td>32,152</td>
                 <td>24</td>
                 <td>5.5 Mh/s</td>
               </tr>
               <tr>
-                <td>1</td>
-                <td>0x . . . 34te</td>
+                <td>13</td>
+                <td class="wallet">0x95d1E . . . . 4AF64a</td>
+                <td>32,152</td>
+                <td>24</td>
+                <td>5.5 Mh/s</td>
+              </tr>
+              <tr>
+                <td>14</td>
+                <td class="wallet">0x95d1E . . . . 4AF64a</td>
+                <td>32,152</td>
+                <td>24</td>
+                <td>5.5 Mh/s</td>
+              </tr>
+              <tr>
+                <td>15</td>
+                <td class="wallet">0x95d1E . . . . 4AF64a</td>
                 <td>32,152</td>
                 <td>24</td>
                 <td>5.5 Mh/s</td>
