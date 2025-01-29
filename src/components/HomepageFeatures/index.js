@@ -1,19 +1,22 @@
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "charts.css";
-
+import Papa from "papaparse";
+import Pagination from './pagination';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faServer, faMicrochip, faLaptopCode, faMemory, faCode, faSackDollar } from '@fortawesome/free-solid-svg-icons';
 
 
 const FeatureList = [];
 const LeftGridItems = [
-  { title: "Global eClient", description: "2.234 ", types: "eClients" },
-  { title: "Global Worker", description: "6.874 ", types: "Workers" },
-  { title: "Global Speed", description: "58.8 ", types: "Th/s" },
-  { title: "Global CPU", description: "4.845 ", types: "CPUs" },
-  { title: "Testnet Payout", description: "26.4M ", types: "ETERCHAIN" },
-  { title: "Global RAM", description: "24 ", types: "TB" },
+  { title: "GLOBAL eCLIENT", description: "2.234 ", types: "eClients", imageICO: faLaptopCode },
+  { title: "GLOBAL WORKER", description: "6.874 ", types: "Workers", imageICO: faCode },
+  { title: "GLOBAL SPEED", description: "58.8 ", types: "Th/s", imageICO: faServer },
+  { title: "GLOBAL CPU", description: "4.845 ", types: "CPUs", imageICO: faMicrochip },
+  { title: "TESTNET PAYOUT", description: "26.4M ", types: "ETERCHAIN", imageICO: faSackDollar },
+  { title: "GLOBAL RAM", description: "24 ", types: "TB", imageICO: faMemory },
 ];
 const LeftGridItems2 = [
   { title: "Judul 7", description: "- - -", types: "," },
@@ -98,13 +101,241 @@ function Feature({ Svg, title, description }) {
 
 export default function HomepageFeatures() {
   const [data, setData] = useState([
-    { id: 1, wallet: "0x5dF47Af1eFdfa24073E7135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
-    { id: 2, wallet: "0x0758bF6151C6DC2A58C95147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
-    { id: 3, wallet: "0xA1B2C3D4E5F67890123456789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 1, wallet: "0x5dF47Af1eFdfa24073E7135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 2, wallet: "0x0758bF6151C6DC2A58C92147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 3, wallet: "0xA1B2C3D4E5F67890123436789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 4, wallet: "0x0758bF6151C6DC2A58C94147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 5, wallet: "0xA1B2C3D4E5F67890123456789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 6, wallet: "0x5dF47Af1eFdfa24073E7635bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 7, wallet: "0x0758bF6151C6DC2A58C97147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 8, wallet: "0xA1B2C3D4E5F67890123486789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 9, wallet: "0x0758bF6151C6DC2A58C99147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 10, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 11, wallet: "0x5dF47Af1eFdfa24073E1135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 12, wallet: "0x0758bF6151C6DC2A58C25147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 13, wallet: "0xA1B2C3D4E5F67890123356789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 14, wallet: "0x0758bF6151C6DC2A58C45147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 15, wallet: "0xA1B2C3D4E5F67890123556789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 16, wallet: "0x5dF47Af1eFdfa24073E6135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 17, wallet: "0x0758bF6151C6DC2A58C75147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 18, wallet: "0xA1B2C3D4E5F67890123856789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 19, wallet: "0x0758bF6151C6DC2A58C95147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 20, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 2, wallet: "0x0758bF6151C6DC2A58C92147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 3, wallet: "0xA1B2C3D4E5F67890123436789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 4, wallet: "0x0758bF6151C6DC2A58C94147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 5, wallet: "0xA1B2C3D4E5F67890123456789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 6, wallet: "0x5dF47Af1eFdfa24073E7635bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 7, wallet: "0x0758bF6151C6DC2A58C97147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 8, wallet: "0xA1B2C3D4E5F67890123486789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 9, wallet: "0x0758bF6151C6DC2A58C99147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 10, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 11, wallet: "0x5dF47Af1eFdfa24073E1135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 12, wallet: "0x0758bF6151C6DC2A58C25147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 13, wallet: "0xA1B2C3D4E5F67890123356789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 14, wallet: "0x0758bF6151C6DC2A58C45147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 15, wallet: "0xA1B2C3D4E5F67890123556789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 16, wallet: "0x5dF47Af1eFdfa24073E6135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 17, wallet: "0x0758bF6151C6DC2A58C75147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 18, wallet: "0xA1B2C3D4E5F67890123856789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 19, wallet: "0x0758bF6151C6DC2A58C95147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 20, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 2, wallet: "0x0758bF6151C6DC2A58C92147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 3, wallet: "0xA1B2C3D4E5F67890123436789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 4, wallet: "0x0758bF6151C6DC2A58C94147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 5, wallet: "0xA1B2C3D4E5F67890123456789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 6, wallet: "0x5dF47Af1eFdfa24073E7635bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 7, wallet: "0x0758bF6151C6DC2A58C97147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 8, wallet: "0xA1B2C3D4E5F67890123486789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 9, wallet: "0x0758bF6151C6DC2A58C99147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 10, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 11, wallet: "0x5dF47Af1eFdfa24073E1135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 12, wallet: "0x0758bF6151C6DC2A58C25147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 13, wallet: "0xA1B2C3D4E5F67890123356789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 14, wallet: "0x0758bF6151C6DC2A58C45147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 15, wallet: "0xA1B2C3D4E5F67890123556789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 16, wallet: "0x5dF47Af1eFdfa24073E6135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 17, wallet: "0x0758bF6151C6DC2A58C75147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 18, wallet: "0xA1B2C3D4E5F67890123856789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 19, wallet: "0x0758bF6151C6DC2A58C95147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 20, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 2, wallet: "0x0758bF6151C6DC2A58C92147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 3, wallet: "0xA1B2C3D4E5F67890123436789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 4, wallet: "0x0758bF6151C6DC2A58C94147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 5, wallet: "0xA1B2C3D4E5F67890123456789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 6, wallet: "0x5dF47Af1eFdfa24073E7635bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 7, wallet: "0x0758bF6151C6DC2A58C97147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 8, wallet: "0xA1B2C3D4E5F67890123486789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 9, wallet: "0x0758bF6151C6DC2A58C99147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 10, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 11, wallet: "0x5dF47Af1eFdfa24073E1135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 12, wallet: "0x0758bF6151C6DC2A58C25147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 13, wallet: "0xA1B2C3D4E5F67890123356789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 14, wallet: "0x0758bF6151C6DC2A58C45147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 15, wallet: "0xA1B2C3D4E5F67890123556789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 16, wallet: "0x5dF47Af1eFdfa24073E6135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 17, wallet: "0x0758bF6151C6DC2A58C75147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 18, wallet: "0xA1B2C3D4E5F67890123856789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 19, wallet: "0x0758bF6151C6DC2A58C95147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 20, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 2, wallet: "0x0758bF6151C6DC2A58C92147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 3, wallet: "0xA1B2C3D4E5F67890123436789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 4, wallet: "0x0758bF6151C6DC2A58C94147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 5, wallet: "0xA1B2C3D4E5F67890123456789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 6, wallet: "0x5dF47Af1eFdfa24073E7635bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 7, wallet: "0x0758bF6151C6DC2A58C97147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 8, wallet: "0xA1B2C3D4E5F67890123486789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 9, wallet: "0x0758bF6151C6DC2A58C99147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 10, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 11, wallet: "0x5dF47Af1eFdfa24073E1135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 12, wallet: "0x0758bF6151C6DC2A58C25147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 13, wallet: "0xA1B2C3D4E5F67890123356789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 14, wallet: "0x0758bF6151C6DC2A58C45147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 15, wallet: "0xA1B2C3D4E5F67890123556789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 16, wallet: "0x5dF47Af1eFdfa24073E6135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 17, wallet: "0x0758bF6151C6DC2A58C75147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 18, wallet: "0xA1B2C3D4E5F67890123856789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 19, wallet: "0x0758bF6151C6DC2A58C95147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 20, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 2, wallet: "0x0758bF6151C6DC2A58C92147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 3, wallet: "0xA1B2C3D4E5F67890123436789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 4, wallet: "0x0758bF6151C6DC2A58C94147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 5, wallet: "0xA1B2C3D4E5F67890123456789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 6, wallet: "0x5dF47Af1eFdfa24073E7635bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 7, wallet: "0x0758bF6151C6DC2A58C97147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 8, wallet: "0xA1B2C3D4E5F67890123486789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 9, wallet: "0x0758bF6151C6DC2A58C99147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 10, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 11, wallet: "0x5dF47Af1eFdfa24073E1135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 12, wallet: "0x0758bF6151C6DC2A58C25147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 13, wallet: "0xA1B2C3D4E5F67890123356789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 14, wallet: "0x0758bF6151C6DC2A58C45147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 15, wallet: "0xA1B2C3D4E5F67890123556789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 16, wallet: "0x5dF47Af1eFdfa24073E6135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 17, wallet: "0x0758bF6151C6DC2A58C75147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 18, wallet: "0xA1B2C3D4E5F67890123856789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 19, wallet: "0x0758bF6151C6DC2A58C95147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 20, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 2, wallet: "0x0758bF6151C6DC2A58C92147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 3, wallet: "0xA1B2C3D4E5F67890123436789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 4, wallet: "0x0758bF6151C6DC2A58C94147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 5, wallet: "0xA1B2C3D4E5F67890123456789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 6, wallet: "0x5dF47Af1eFdfa24073E7635bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 7, wallet: "0x0758bF6151C6DC2A58C97147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 8, wallet: "0xA1B2C3D4E5F67890123486789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 9, wallet: "0x0758bF6151C6DC2A58C99147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 10, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 11, wallet: "0x5dF47Af1eFdfa24073E1135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 12, wallet: "0x0758bF6151C6DC2A58C25147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 13, wallet: "0xA1B2C3D4E5F67890123356789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 14, wallet: "0x0758bF6151C6DC2A58C45147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 15, wallet: "0xA1B2C3D4E5F67890123556789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 16, wallet: "0x5dF47Af1eFdfa24073E6135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 17, wallet: "0x0758bF6151C6DC2A58C75147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 18, wallet: "0xA1B2C3D4E5F67890123856789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 19, wallet: "0x0758bF6151C6DC2A58C95147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 20, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 2, wallet: "0x0758bF6151C6DC2A58C92147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 3, wallet: "0xA1B2C3D4E5F67890123436789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 4, wallet: "0x0758bF6151C6DC2A58C94147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 5, wallet: "0xA1B2C3D4E5F67890123456789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 6, wallet: "0x5dF47Af1eFdfa24073E7635bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 7, wallet: "0x0758bF6151C6DC2A58C97147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 8, wallet: "0xA1B2C3D4E5F67890123486789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 9, wallet: "0x0758bF6151C6DC2A58C99147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 10, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 11, wallet: "0x5dF47Af1eFdfa24073E1135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 12, wallet: "0x0758bF6151C6DC2A58C25147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 13, wallet: "0xA1B2C3D4E5F67890123356789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 14, wallet: "0x0758bF6151C6DC2A58C45147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 15, wallet: "0xA1B2C3D4E5F67890123556789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 16, wallet: "0x5dF47Af1eFdfa24073E6135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 17, wallet: "0x0758bF6151C6DC2A58C75147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 18, wallet: "0xA1B2C3D4E5F67890123856789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 19, wallet: "0x0758bF6151C6DC2A58C95147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 20, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 2, wallet: "0x0758bF6151C6DC2A58C92147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 3, wallet: "0xA1B2C3D4E5F67890123436789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 4, wallet: "0x0758bF6151C6DC2A58C94147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 5, wallet: "0xA1B2C3D4E5F67890123456789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 6, wallet: "0x5dF47Af1eFdfa24073E7635bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 7, wallet: "0x0758bF6151C6DC2A58C97147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 8, wallet: "0xA1B2C3D4E5F67890123486789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 9, wallet: "0x0758bF6151C6DC2A58C99147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 10, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 11, wallet: "0x5dF47Af1eFdfa24073E1135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 12, wallet: "0x0758bF6151C6DC2A58C25147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 13, wallet: "0xA1B2C3D4E5F67890123356789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 14, wallet: "0x0758bF6151C6DC2A58C45147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 15, wallet: "0xA1B2C3D4E5F67890123556789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 16, wallet: "0x5dF47Af1eFdfa24073E6135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 17, wallet: "0x0758bF6151C6DC2A58C75147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 18, wallet: "0xA1B2C3D4E5F67890123856789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 19, wallet: "0x0758bF6151C6DC2A58C95147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 20, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 2, wallet: "0x0758bF6151C6DC2A58C92147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 3, wallet: "0xA1B2C3D4E5F67890123436789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 4, wallet: "0x0758bF6151C6DC2A58C94147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 5, wallet: "0xA1B2C3D4E5F67890123456789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 6, wallet: "0x5dF47Af1eFdfa24073E7635bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 7, wallet: "0x0758bF6151C6DC2A58C97147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 8, wallet: "0xA1B2C3D4E5F67890123486789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 9, wallet: "0x0758bF6151C6DC2A58C99147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 10, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 11, wallet: "0x5dF47Af1eFdfa24073E1135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 12, wallet: "0x0758bF6151C6DC2A58C25147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 13, wallet: "0xA1B2C3D4E5F67890123356789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 14, wallet: "0x0758bF6151C6DC2A58C45147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 15, wallet: "0xA1B2C3D4E5F67890123556789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 16, wallet: "0x5dF47Af1eFdfa24073E6135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 17, wallet: "0x0758bF6151C6DC2A58C75147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 18, wallet: "0xA1B2C3D4E5F67890123856789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 19, wallet: "0x0758bF6151C6DC2A58C95147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 20, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 2, wallet: "0x0758bF6151C6DC2A58C92147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 3, wallet: "0xA1B2C3D4E5F67890123436789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 4, wallet: "0x0758bF6151C6DC2A58C94147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 5, wallet: "0xA1B2C3D4E5F67890123456789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 6, wallet: "0x5dF47Af1eFdfa24073E7635bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 7, wallet: "0x0758bF6151C6DC2A58C97147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 8, wallet: "0xA1B2C3D4E5F67890123486789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 9, wallet: "0x0758bF6151C6DC2A58C99147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 10, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 11, wallet: "0x5dF47Af1eFdfa24073E1135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 12, wallet: "0x0758bF6151C6DC2A58C25147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 13, wallet: "0xA1B2C3D4E5F67890123356789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 14, wallet: "0x0758bF6151C6DC2A58C45147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 15, wallet: "0xA1B2C3D4E5F67890123556789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 16, wallet: "0x5dF47Af1eFdfa24073E6135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 17, wallet: "0x0758bF6151C6DC2A58C75147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 18, wallet: "0xA1B2C3D4E5F67890123856789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 19, wallet: "0x0758bF6151C6DC2A58C95147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 20, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 2, wallet: "0x0758bF6151C6DC2A58C92147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 3, wallet: "0xA1B2C3D4E5F67890123436789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 4, wallet: "0x0758bF6151C6DC2A58C94147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 5, wallet: "0xA1B2C3D4E5F67890123456789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 6, wallet: "0x5dF47Af1eFdfa24073E7635bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 7, wallet: "0x0758bF6151C6DC2A58C97147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 8, wallet: "0xA1B2C3D4E5F67890123486789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 9, wallet: "0x0758bF6151C6DC2A58C99147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 10, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 11, wallet: "0x5dF47Af1eFdfa24073E1135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 12, wallet: "0x0758bF6151C6DC2A58C25147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 13, wallet: "0xA1B2C3D4E5F67890123356789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 14, wallet: "0x0758bF6151C6DC2A58C45147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 15, wallet: "0xA1B2C3D4E5F67890123556789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 16, wallet: "0x5dF47Af1eFdfa24073E6135bD3A309d180A51261", point: 32152, worker: 24, speed: "5.5 Mh/s" },
+    { rank: 17, wallet: "0x0758bF6151C6DC2A58C75147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 18, wallet: "0xA1B2C3D4E5F67890123856789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
+    { rank: 19, wallet: "0x0758bF6151C6DC2A58C95147C5B1f675be178D7c", point: 31200, worker: 22, speed: "5.3 Mh/s" },
+    { rank: 20, wallet: "0xA1B2C3D4E5F67890123056789ABCDEF123456789", point: 29800, worker: 20, speed: "4.9 Mh/s" },
     // Tambahkan lebih banyak data di sini
   ]);
   const [search, setSearch] = useState("");
-  
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 15;
+
   const handleSearchChange = (event) => {
     setSearch(event.target.value);
   };
@@ -113,15 +344,35 @@ export default function HomepageFeatures() {
     item.wallet.toLowerCase().includes(search.toLowerCase())
   );
 
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+  const currentPageData = filteredData.slice(startIndex, endIndex);
+
+  // Calculate the total number of pages
+  const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+
+  // Handle page change
+  const goToPage = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
   return (
     <>
       <div className={styles.container2}>
         {/* Grid kiri */}
         <div className={styles.gridLeft}>
           {LeftGridItems.map((item, idx) => (
-            <div key={idx} className={styles.gridItem}>
+            <div key={idx} className={styles.gridItem}> {/*style={{ backgroundImage: `url(${item.imageICO})` }}>*/}
+              <FontAwesomeIcon icon={item.imageICO} className={styles.gridItemIcon} />
+              {/* <img
+                    src={item.imageICO}  // Gantilah dengan URL gambar yang sesuai
+                    alt={item.title}
+                    className={styles.gridItemImage}  // Untuk styling gambar
+                  /> */}
               <p>
-              <span className={styles.itemtitle}>{item.title}</span>
+                <span className={styles.itemtitle}>{item.title}</span>
               </p>
               <hr className={styles.midleLine} />
               <p>
@@ -160,8 +411,7 @@ export default function HomepageFeatures() {
         </div>
 
         {/* Grid kanan */}
-        <div class="gridRight">
-        
+        <div className="gridRight">
           <div className="gridTable">
             <input
               className={styles.gridItemSearch}
@@ -169,129 +419,11 @@ export default function HomepageFeatures() {
               id="search"
               placeholder="SEARCH WALLET ADDRESS"
               value={search}
-              onChange={handleSearchChange} // Event untuk pencarian otomatis
+              onChange={handleSearchChange} // Event for automatic search
               aria-controls="dataTable"
             />
           </div>
 
-          {/* <table class="gridTable">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Wallet</th>
-                <th>Point</th>
-                <th>Worker</th>
-                <th>Speed</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className={styles.LeaderboardText}>
-                <td>1</td>
-                <td class="wallet">0x5dF47Af1eFdfa24073E7135bD3A309d180A51261</td>
-                <td>32,152</td>
-                <td>24</td>
-                <td>5.5 Mh/s</td>
-              </tr>
-              <tr className={styles.LeaderboardText}>
-                <td>2</td>
-                <td class="wallet">0x5dF47Af1eFdfa24073E7135bD3A309d180A51261</td>
-                <td>32,152</td>
-                <td>24</td>
-                <td>5.5 Mh/s</td>
-              </tr>
-              <tr className={styles.LeaderboardText}>
-                <td>3</td>
-                <td class="wallet">0x5dF47Af1eFdfa24073E7135bD3A309d180A51261</td>
-                <td>32,152</td>
-                <td>24</td>
-                <td>5.5 Mh/s</td>
-              </tr>
-              <tr className={styles.LeaderboardText}>
-                <td>4</td>
-                <td class="wallet">0x5dF47Af1eFdfa24073E7135bD3A309d180A51261</td>
-                <td>32,152</td>
-                <td>24</td>
-                <td>5.5 Mh/s</td>
-              </tr>
-              <tr className={styles.LeaderboardText}>
-                <td>5</td>
-                <td class="wallet">0x5dF47Af1eFdfa24073E7135bD3A309d180A51261</td>
-                <td>32,152</td>
-                <td>24</td>
-                <td>5.5 Mh/s</td>
-              </tr>
-              <tr className={styles.LeaderboardText}>
-                <td>6</td>
-                <td class="wallet">0x5dF47Af1eFdfa24073E7135bD3A309d180A51261</td>
-                <td>32,152</td>
-                <td>24</td>
-                <td>5.5 Mh/s</td>
-              </tr>
-              <tr className={styles.LeaderboardText}>
-                <td>7</td>
-                <td class="wallet">0x5dF47Af1eFdfa24073E7135bD3A309d180A51261</td>
-                <td>32,152</td>
-                <td>24</td>
-                <td>5.5 Mh/s</td>
-              </tr>
-              <tr className={styles.LeaderboardText}>
-                <td>8</td>
-                <td class="wallet">0x5dF47Af1eFdfa24073E7135bD3A309d180A51261</td>
-                <td>32,152</td>
-                <td>24</td>
-                <td>5.5 Mh/s</td>
-              </tr>
-              <tr className={styles.LeaderboardText}>
-                <td>9</td>
-                <td class="wallet">0x5dF47Af1eFdfa24073E7135bD3A309d180A51261</td>
-                <td>32,152</td>
-                <td>24</td>
-                <td>5.5 Mh/s</td>
-              </tr>
-              <tr className={styles.LeaderboardText}>
-                <td>10</td>
-                <td class="wallet">0x5dF47Af1eFdfa24073E7135bD3A309d180A51261</td>
-                <td>32,152</td>
-                <td>24</td>
-                <td>5.5 Mh/s</td>
-              </tr>
-              <tr className={styles.LeaderboardText}>
-                <td>11</td>
-                <td class="wallet">0x5dF47Af1eFdfa24073E7135bD3A309d180A51261</td>
-                <td>32,152</td>
-                <td>24</td>
-                <td>5.5 Mh/s</td>
-              </tr>
-              <tr className={styles.LeaderboardText}>
-                <td>12</td>
-                <td class="wallet">0x5dF47Af1eFdfa24073E7135bD3A309d180A51261</td>
-                <td>32,152</td>
-                <td>24</td>
-                <td>5.5 Mh/s</td>
-              </tr>
-              <tr className={styles.LeaderboardText}>
-                <td>13</td>
-                <td class="wallet">0x5dF47Af1eFdfa24073E7135bD3A309d180A51261</td>
-                <td>32,152</td>
-                <td>24</td>
-                <td>5.5 Mh/s</td>
-              </tr>
-              <tr className={styles.LeaderboardText}>
-                <td>14</td>
-                <td class="wallet">0x0758bF6151C6DC2A58C95147C5B1f675be178D7c</td>
-                <td>32,152</td>
-                <td>24</td>
-                <td>5.5 Mh/s</td>
-              </tr>
-              <tr className={styles.LeaderboardText}>
-                <td>15</td>
-                <td class="wallet">0x5dF47Af1eFdfa24073E7135bD3A309d180A51261</td>
-                <td>32,152</td>
-                <td>24</td>
-                <td>5.5 Mh/s</td>
-              </tr>
-            </tbody>
-          </table> */}
           <table className="gridTable">
             <thead>
               <tr>
@@ -303,11 +435,11 @@ export default function HomepageFeatures() {
               </tr>
             </thead>
             <tbody>
-              {filteredData.length > 0 ? (
-                filteredData.map((item, index) => (
-                  <tr key={item.id} className={styles.LeaderboardText}>
-                    <td>{index + 1}</td>
-                    <td className="wallet">{item.wallet}</td>
+              {currentPageData.length > 0 ? (
+                currentPageData.map((item, index) => (
+                  <tr key={item.rank} className={styles.LeaderboardText}>
+                    <td>{item.rank}</td>
+                    <td className={styles.wallet}>{item.wallet}</td>
                     <td>{item.point.toLocaleString()}</td>
                     <td>{item.worker}</td>
                     <td>{item.speed}</td>
@@ -322,6 +454,16 @@ export default function HomepageFeatures() {
               )}
             </tbody>
           </table>
+
+          {/* Pagination Controls */}
+          {/* Pagination Controls */}
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={goToPage}
+          />
+
+
         </div>
       </div>
 

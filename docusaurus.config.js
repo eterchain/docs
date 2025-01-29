@@ -65,12 +65,12 @@ const config = {
   ],
 
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    ///** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Eterchain',
+        title: 'ETERCHAIN',
         logo: {
           alt: 'Eterchain Logo',
           src: 'img/200d.svg',
@@ -79,15 +79,15 @@ const config = {
           {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Introduction',
-          },
-          {to: 'https://eterchain.io', label: 'Leaderboard', position: 'left'},
-          {
-            href: 'https://github.com/eterchain',
-            label: 'GitHub',
             position: 'right',
+            label: 'HOW TO RUN A eCLIENT?',
           },
+          //{to: 'https://eterchain.io', label: 'Leaderboard', position: 'left'},
+          // {
+          //   href: 'https://github.com/eterchain',
+          //   label: 'GitHub',
+          //   position: 'right',
+          // },
         ],
       },
       footer: {

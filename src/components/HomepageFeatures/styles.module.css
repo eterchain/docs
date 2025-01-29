@@ -64,6 +64,10 @@ body {
 border-radius: 8px;
 }
 
+.wallet {
+  text-align: left;
+}
+
 .gridTable th {
   background-color: #f2f2f2;
   font-weight: bold;
@@ -96,7 +100,12 @@ border-radius: 8px;
   text-align: center;
   word-wrap: break-word;
   height: 100%;
+  background-size: cover;  /* Agar gambar menyesuaikan ukuran */
+  background-position: center; /* Gambar berada di tengah */
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
+
 
 .gridItemSolo {
   display: flex;
@@ -153,17 +162,17 @@ border-radius: 8px;
   font-size: 2.2rem;   /* Ukuran font lebih besar untuk description */
   font-weight: bold;   /* Bisa diatur menjadi bold jika diinginkan */
 }
-
+.types {
+  font-size: 1rem;     /* Ukuran font lebih kecil untuk types */
+  color: #777;         /* Bisa ditambahkan warna abu-abu */
+}
 .chartTitle {
   font-size: 2.2rem;   /* Ukuran font lebih besar untuk description */
   font-weight: bold;   /* Bisa diatur menjadi bold jika diinginkan */
   text-align: left;
 }
 
-.types {
-  font-size: 1rem;     /* Ukuran font lebih kecil untuk types */
-  color: #777;         /* Bisa ditambahkan warna abu-abu */
-}
+
 
 /* Mengubah warna garis chart */
 .charts-css.line {
@@ -200,4 +209,96 @@ border-radius: 8px;
 /* Data */
 #my-chart tbody td {
   color: blue;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+.paginationButton {
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 8px;
+  width: 40px;  /* Menetapkan lebar tetap untuk semua tombol */
+  height: 40px; /* Menetapkan tinggi tetap untuk semua tombol */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Untuk memusatkan teks di dalam tombol */
+}
+
+.prevButton,
+.nextButton {
+  border-radius: 8px;
+  width: 80px;
+  height: 40px; /* Sesuaikan ukuran tombol sebelumnya/berikutnya */
+}
+
+.pageNumbers {
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.paginationButton:disabled {
+  border-radius: 8px;
+  cursor: not-allowed;
+  background-color: #ddd;
+}
+
+.activePage {
+  border-radius: 8px;
+  background-color: #007bff;
+  color: white;
+}
+
+.gridItemImage {
+  width: 40px;  /* Menetapkan lebar tetap untuk semua tombol */
+  height: 40px; /* Menetapkan tinggi tetap untuk semua tombol */
+}
+
+@media (max-width: 768px) { /* Untuk layar lebih kecil seperti tablet dan HP */
+  .container2 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .gridLeft {
+    grid-template-columns: repeat(3, 1fr); /* Ubah jadi 2 kolom saat layar kecil */
+  }
+
+  .gridRight {
+    order: 2; /* Pastikan gridRight berada di bawah */
+    width: 100%;
+  }
+
+  .itemtitle {
+    font-size: 0.7rem;
+  }
+  .description {
+    font-size: 1.1rem;  /* Bisa diatur menjadi bold jika diinginkan */
+  }
+  .types {
+    font-size: 0.5rem;    /* Bisa ditambahkan warna abu-abu */
+  }
+}
+
+@media (max-width: 480px) { /* Untuk layar HP lebih kecil */
+  .gridLeft {
+    grid-template-columns: repeat(3, 1fr); /* Ubah jadi 1 kolom saat layar sangat kecil */
+  }
+  .itemtitle {
+    font-size: 0.7rem;
+  }
+  .description {
+    font-size: 1.1rem;  /* Bisa diatur menjadi bold jika diinginkan */
+  }
+  .types {
+    font-size: 0.5rem;    /* Bisa ditambahkan warna abu-abu */
+  }
 }
