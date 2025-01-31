@@ -12,7 +12,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'Eterchain Docs',
   tagline: 'Empowering Infinite Connectivity',
-  favicon: 'img/200b.ico',
+  favicon: 'img/logo.svg',
 
   // Set the production url of your site here
   url: 'https://docs.eterchain.io',
@@ -73,14 +73,25 @@ const config = {
         title: 'ETERCHAIN',
         logo: {
           alt: 'Eterchain Logo',
-          src: 'img/200d.svg',
+          src: 'img/logo.svg',
         },
         items: [
+          // {
+          //   type: 'html',
+          //   value: '<div class="boxt"><span></span><span></span><span></span><span></span><div class="content"><h2>My animated Border </h2><p><a>All our modules</a></p></div></div>',
+          //   position: 'left',
+          // },
+          {
+            type: 'docSidebar',
+            sidebarId: 'tutorialSidebar',
+            position: 'left',
+            label: 'Docs ',
+          },
           {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'right',
-            label: 'HOW TO RUN A eCLIENT?',
+            label: 'HOW TO RUN',
           },
           //{to: 'https://eterchain.io', label: 'Leaderboard', position: 'left'},
           // {
@@ -100,15 +111,15 @@ const config = {
                 label: 'Introduction',
                 to: '/docs/introduction',
               },
+              {
+                label: 'How To Run',
+                to: 'https://github.com/eterchain',
+              },
             ],
           },
           {
             title: 'Community',
             items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/eterchain',
-              },
               {
                 label: 'Discord',
                 href: 'https://discordapp.com/invite/eterchain',
@@ -117,6 +128,10 @@ const config = {
                 label: 'X',
                 href: 'https://x.com/eterchains',
               },
+              {
+                label: 'Telegram',
+                href: 'https://t.me/eterchain',
+              },
             ],
           },
           {
@@ -124,7 +139,7 @@ const config = {
             items: [
               {
                 label: 'Dashboard',
-                to: 'https://eterchain.io',
+                to: '/',
               },
               {
                 label: 'GitHub',

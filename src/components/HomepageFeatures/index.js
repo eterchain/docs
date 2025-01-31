@@ -417,9 +417,10 @@ export default function HomepageFeatures() {
               className={styles.gridItemSearch}
               type="search"
               id="search"
-              placeholder="SEARCH WALLET ADDRESS"
+              placeholder="<SEARCH WALLET ADDRESS>"
               value={search}
               onChange={handleSearchChange} // Event for automatic search
+              style={{ borderBottom: "0.2px solid grey", borderTop: "0.2px solid grey"}} 
               aria-controls="dataTable"
             />
           </div>
