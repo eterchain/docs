@@ -5,14 +5,14 @@ header('Access-Control-Allow-Origin: *');
 include 'connection.php';
 
 if (isset($_GET['get_data'])) {
-    get_data($conn);
+    get_data();
 } else if (isset($_GET['get_summary'])) {
-    get_summary($conn);
+    get_summary();
 }
 
 
 
-function get_data($conn)
+function get_data()
 {
     $query = "SELECT 
                 wallet, 
@@ -23,7 +23,7 @@ function get_data($conn)
             FROM eterchain_db.`user` 
             GROUP BY wallet";
 
-    $stmt = $conn->prepare($query);
+    $stmt = $GLOBALS['conn']->prepare($query);
     $stmt->execute();
 
     $result = $stmt->get_result();
@@ -37,7 +37,7 @@ function get_data($conn)
     }
 }
 
-function get_summary($conn)
+function get_summary()
 {
     $query = "SELECT 
                 COUNT(wallet) AS totWallet, 
@@ -47,7 +47,7 @@ function get_summary($conn)
             FROM
             eterchain_db.`user`";
 
-    $stmt = $conn->prepare($query);
+    $stmt = $GLOBALS['conn']->prepare($query);
     $stmt->execute();
 
     $result = $stmt->get_result();
